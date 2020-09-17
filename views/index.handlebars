@@ -1,0 +1,39 @@
+<div class="row">
+    <h1>Greetings</h1>
+
+    
+
+    <div class="textbox">
+        <form action="/greet" method="POST">
+            <strong>Name: </strong>
+            <input type="text" name="nameEntered" class="nameEntered" placeholder="enter name">
+            <div class="counter">{{count}}</div>
+    </div>
+
+    <div class="radioGreet">
+        <input type="radio" name="language" value="English">English
+        <input type="radio" name="language" value="IsiXhosa">IsiXhosa
+        <input type="radio" name="language" value="IsiZulu">IsiZulu
+
+    </div>
+
+    <div>
+        <button type="submit" class="greetUpdate">greet me</button>
+    </div>
+    <div class="message"></div>
+
+    <div class="error"></div>
+    
+    
+    <div classe="return">
+        {{message}}
+    </div>
+
+
+    </form>
+
+    <br>
+
+</div>
+
+
