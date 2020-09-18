@@ -1,15 +1,16 @@
 module.exports = function greetFactory() {
 
-    let namesList = {
+    let namesList = {}
 
-    }
     function setTheName(name) {
+        if(name){
+    
         if (namesList[name] === undefined) {
-            namesList[name] = 0;
+            namesList[name] =0; 
         }
         namesList[name] =+ 1;
     }
-
+    }
     function getTheName() {
         return namesList;
     }

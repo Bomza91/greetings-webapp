@@ -1,7 +1,7 @@
 <div class="row">
     <h1>Greetings</h1>
 
-    
+
 
     <div class="textbox">
         <form action="/greet" method="POST">
@@ -23,17 +23,19 @@
     <div class="message"></div>
 
     <div class="error"></div>
-    
-    
+
+
     <div classe="return">
         {{message}}
     </div>
-
-
+<div class='{{info}}'>
+    {{#if messages.info}}
+    {{messages.info}}
+    {{/if}}
+    </div>
+    <a href="/greeted">Names greeted</a>
     </form>
 
     <br>
 
 </div>
-
-
