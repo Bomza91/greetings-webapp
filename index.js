@@ -32,12 +32,21 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
+
+app.get("/", function (req, res) {
+
+  
+    res.render("index", {
+        counter: greetings.theCounter(),
+    })
+});
+
 app.post('/greet', function (req, res) {
         var name = req.body.nameEntered;
-    //    var lang = req.body.language;
+       var lang = req.body.language;
 
     if (!name) {
-        req.flash('info', 'Flash Message Added');
+        req.flash('info', 'Please enter your name!');
         res.render('index')
         return;
     }
@@ -48,6 +57,7 @@ app.post('/greet', function (req, res) {
             count: greetings.counter(),
         })
 });
+
 
 app.get('/greeted', function (req, res) {
     let names = greetings.getTheName();
@@ -76,3 +86,7 @@ const PORT = process.env.PORT || 3011;
 app.listen(PORT, function () {
     console.log("App started at port", PORT)
 });
+
+
+
+

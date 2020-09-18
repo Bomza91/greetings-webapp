@@ -34,10 +34,10 @@ module.exports = function greetFactory() {
     function errorMessage(languageClicked, nameEntered) {
         var message = "";
         if (nameEntered === "") {
-            message = "Please enter your name";
+            message = "Please enter your name!";
         }
         else if (!languageClicked) {
-            message = "Please select language";
+            message = "Please select language!";
         }
         return message;
     }

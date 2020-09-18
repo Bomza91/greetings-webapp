@@ -1,23 +1,22 @@
+body {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 150%;
+	background-color: darkturquoise;
+}
+
 .container {
 	margin: auto;
 	padding: 2em;
-	background-color: darkgray;
 }
 
-  .button{
+  .greetUpdate{
 	
-	padding: 15px 32px;
+	padding: 20px 32px;
 	font-size: 16px;
 }
 
-.info{
-	color: rgb(255, 0, 0);	
-}
-
-
-.message {
+.info {
 color: rgb(255, 0, 0);
-	margin: 0.5em;
 
 }
 
@@ -39,4 +38,7 @@ width: 10em;
 		margin: auto;
 	}
 }
+
+
+
 
