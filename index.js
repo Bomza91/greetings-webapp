@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
 const greetFactory = require('./greetings');
+const pg = require("pg");
+const Pool = pg.Pool;
 
 const app = express();
 const greetings = greetFactory();
@@ -15,6 +17,14 @@ app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+
+const connectionString = process.env.DATABASE_URL || 'postgresql://bomkazi:codex@123localhost:5432/greetings';
+
+const pool = new Pool({
+    connectionString
+});
+
 
 // initialise session middleware - flash-express depends on it
 app.use(session({
@@ -57,7 +67,6 @@ app.post('/greet', function (req, res) {
             count: greetings.counter(),
         })
 });
-
 
 app.get('/greeted', function (req, res) {
     let names = greetings.getTheName();
