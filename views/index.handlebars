@@ -9,6 +9,7 @@
             <input type="text" name="nameEntered" class="nameEntered" placeholder="enter name">
             <div class="counter">{{count}}</div>
     </div>
+    <br/>
 
     <div class="radioGreet">
         <input type="radio" name="language" value="English">English
@@ -16,10 +17,14 @@
         <input type="radio" name="language" value="IsiZulu">IsiZulu
 
     </div>
+    <br/>
 
-    <div>
+    <div class="btn"> 
         <button type="submit" class="greetUpdate">greet me</button>
+        <br/>
+        {{!-- <button type="submit" class="reset">reset</button> --}}
     </div>
+    
     <div class="message"></div>
 
     <div class="error"></div>
@@ -33,6 +38,9 @@
     {{messages.info}}
     {{/if}}
     </div>
+    <br/>
+        </form>
+
     <a href="/greeted">Names greeted</a>
     </form>
 

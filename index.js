@@ -8,7 +8,6 @@ const pg = require("pg");
 const Pool = pg.Pool;
 
 const app = express();
-const greetings = greetFactory();
 
 app.engine('handlebars', exphbs({ layoutsDir: './views/layouts' }));
 app.set('view engine', 'handlebars');
@@ -19,11 +18,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://bomkazi:codex@123localhost:5432/greetings';
+const connectionString = process.env.DATABASE_URL || 'postgresql://bomkazi:codex@123@localhost:5432/greetings';
 
 const pool = new Pool({
     connectionString
 });
+const greetings = greetFactory(pool);
 
 
 // initialise session middleware - flash-express depends on it
@@ -38,20 +38,20 @@ app.use(flash());
 
 
 
-app.get('/', function (req, res) {
+app.get('/', async function (req, res) {
     res.render('index');
 });
 
 
-app.get("/", function (req, res) {
+// app.get("/", function (req, res) {
 
   
-    res.render("index", {
-        counter: greetings.theCounter(),
-    })
-});
+//     res.render("index", {
+//         counter: greetings.theCounter(),
+//     })
+// });
 
-app.post('/greet', function (req, res) {
+app.post('/greet', async function (req, res) {
         var name = req.body.nameEntered;
        var lang = req.body.language;
 
@@ -60,27 +60,28 @@ app.post('/greet', function (req, res) {
         res.render('index')
         return;
     }
-    greetings.setTheName(req.body.nameEntered),
-
+ // await greetings.checkingNames(name)
+//console.log(await greetings.getCounter())
         res.render('index', {
-            message: greetings.theLanguage(req.body.language, req.body.nameEntered),
-            count: greetings.counter(),
+            message: await greetings.theLanguage(lang, name),
+            count: await greetings.getCounter(),
         })
 });
 
-app.get('/greeted', function (req, res) {
-    let names = greetings.getTheName();
+
+app.get('/greeted', async function (req, res) {
+
+    var name = await greetings.checkingNames();
+
     res.render('greeted', {
-        names: names
+        names: name
     })
-
-
 })
 
 
-app.get('/counter/:username', function (req, res) {
+app.get('/counter/:username', async function (req, res) {
     let username = req.params.username
-    let names = greetings.getTheName();
+    let names = greetings.checkingNames();
     let personsCounter = names[username]
     res.render('counter', {
         name: username,
@@ -90,11 +91,36 @@ app.get('/counter/:username', function (req, res) {
 
 })
 
+
+// app.post("/counter/: username",  function (req, res) {
+
+//     console.log(req.body);
+
+//     const sql = "insert into greet ( name, counter ) values ($1, $2,);"
+
+//     const personsData = req.body;
+
+//     await pool.query(sql, [
+//         personsData.name,
+//         personsData.counter,
+//     ])
+
+//     res.redirect('/counter')
+// });
+
 const PORT = process.env.PORT || 3011;
 
 app.listen(PORT, function () {
     console.log("App started at port", PORT)
 });
+
+
+
+
+
+
+
+
 
 
 
