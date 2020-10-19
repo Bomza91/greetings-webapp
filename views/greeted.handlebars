@@ -1,11 +1,15 @@
 <div class="row">
     <h1>Greeted names: </h1>
+    <a href="/"><button>Back</button></a>
     <ul>
         {{#each names}}
-            <li> <a href="/counter/{{this.name}}">{{this.name}} </a>  </li>
+             <a href="/counter/{{this.name}}"><li>{{this.name}}</li> </a>  
+
+            
 
         {{/each}}
     </ul>
+    <hr>
 
 </div>
 

@@ -5,23 +5,10 @@ body {
 	background-size: cover;
   }
 
-
-/* body {
-	font-family: 'Times New Roman', Times, serif;
-	font-size: 150%;
-	background-color: rgb(36, 177, 182);
-	
-} */
 .row{
 	background-origin: padding-box;
 }
 
-
-  /* .greetUpdate{
-	
-	padding: 20px 32px;
-	font-size: 16px;
-} */
 
 .info {
 color: rgb(255, 0, 0);

@@ -3,9 +3,11 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
-const greetFactory = require('./greetings');
+const Greetings = require('./greetings');
 const pg = require("pg");
 const Pool = pg.Pool;
+
+var _ = require('lodash');
 
 const app = express();
 
@@ -23,7 +25,7 @@ const connectionString = process.env.DATABASE_URL || 'postgresql://bomkazi:codex
 const pool = new Pool({
     connectionString
 });
-const greetings = greetFactory(pool);
+const greet = Greetings(pool);
 
 
 // initialise session middleware - flash-express depends on it
@@ -45,51 +47,74 @@ app.get('/', async function (req, res) {
 
 // app.get("/", function (req, res) {
 
-  
+
 //     res.render("index", {
-//         counter: greetings.theCounter(),
+//         counter: greet.theCounter(),
 //     })
 // });
 
 app.post('/greet', async function (req, res) {
-        var name = req.body.nameEntered;
-       var lang = req.body.language;
+    var name = _.capitalize(req.body.nameEntered);
+    var lang = req.body.language;
 
-    if (!name) {
-        req.flash('info', 'Please enter your name!');
+    if (lang === undefined && name === "") {
+        req.flash('info', 'Please enter language and name');
         res.render('index')
         return;
     }
- // await greetings.checkingNames(name)
-//console.log(await greetings.getCounter())
-        res.render('index', {
-            message: await greetings.theLanguage(lang, name),
-            count: await greetings.getCounter(),
-        })
+
+   else if (!name) {
+        req.flash('info', 'Please enter your name');
+        res.render('index')
+        return;
+    }
+
+   else if (!lang) {
+        req.flash('info', 'Please enter language');
+        res.render('index')
+        return;
+    }
+    // await greetings.checkingNames(name)
+    //console.log(await greetings.getCounter())
+    res.render('index', {
+        message: await greet.theLanguage(lang, name),
+        count: await greet.getCounter(),
+    })
 });
 
 
 app.get('/greeted', async function (req, res) {
 
-    var name = await greetings.checkingNames();
+    var name = await greet.checkingNames();
 
     res.render('greeted', {
         names: name
     })
-})
+});
 
 
 app.get('/counter/:username', async function (req, res) {
-    let username = req.params.username
-    let names = greetings.checkingNames();
-    let personsCounter = names[username]
-    res.render('counter', {
-        name: username,
-        counter: personsCounter
+    const username = req.params.username
+    const names = await greet.updatingCount(username);
+  
+
+     for (const action of names)
+  
+   var personsCounter = action.counter 
+    res.render('counter', { countName: `Hello, ${username} has been greeted ${personsCounter} times` });
+     
+});
+
+app.get('/reset', async function (req, res) {
+
+ await greet.reset();
+
+    res.render('index', {
+        counter: await greet.getCounter()
     })
+});
 
 
-})
 
 
 // app.post("/counter/: username",  function (req, res) {

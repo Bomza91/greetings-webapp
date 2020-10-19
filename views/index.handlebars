@@ -7,9 +7,10 @@
         <form action="/greet" method="POST">
             <strong>Name: </strong>
             <input type="text" name="nameEntered" class="nameEntered" placeholder="enter name">
+           
             <div class="counter">{{count}}</div>
     </div>
-    <br/>
+    <br />
 
     <div class="radioGreet">
         <input type="radio" name="language" value="English">English
@@ -17,31 +18,45 @@
         <input type="radio" name="language" value="IsiZulu">IsiZulu
 
     </div>
-    <br/>
+    <br />
 
-    <div class="btn"> 
+    <div class="btn">
         <button type="submit" class="greetUpdate">greet me</button>
-        <br/>
-        {{!-- <button type="submit" class="reset">reset</button> --}}
+        <br />
+
     </div>
-    
+{{!-- 
     <div class="message"></div>
 
-    <div class="error"></div>
+    <div class="error"></div> --}}
 
 
     <div classe="return">
         {{message}}
     </div>
-<div class="info">
-    {{#if messages.info}}
-    {{messages.info}}
-    {{/if}}
+    <div class="info">
+        {{#if messages.info}}
+        {{messages.info}}
+        {{/if}}
     </div>
-    <br/>
-        </form>
-
-    <a href="/greeted">Names greeted</a>
+    <br />
     </form>
 
-    <br>
+
+
+    <a href="/greeted">Names greeted</a>
+    <br />
+    <br />
+
+
+
+    <div>
+        <a href="/reset">
+
+            <button class="button-reset data" type="button" name="button">Reset</button>
+        </a>
+    </div>
+    <hr>
+
+
+    </form>
