@@ -24,17 +24,6 @@ describe('Greetings web-app', function () {
 
     })
 
-    it("should be able to insert names to the db and get their counter", async function () {
-        const greeting = Greetings(pool);
-
-        await greeting.insertName("Bomkazi");
-
-        const counter = await greeting.getCounter("Bomkazi");
-      
-
-        assert.equal(2, counter);
-    })
-
     it('should able to greet in English', async function () {
         let greeting = Greetings(pool);
 
