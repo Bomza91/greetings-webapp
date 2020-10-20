@@ -45,14 +45,6 @@ describe('Greetings web-app', function () {
 
         });
 
-
-        // it('should able to reset the counter', async function () {
-        //     let greetings = Greetings(pool);
-            
-        // });
-
-
-
         after(function () {
             pool.end();
         })

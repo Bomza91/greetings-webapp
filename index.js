@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
 const Greetings = require('./greetings');
+const Greeted = require('./routes');
 const pg = require("pg");
 const Pool = pg.Pool;
 
@@ -27,6 +28,8 @@ const pool = new Pool({
 });
 const greet = Greetings(pool);
 
+const routeInstant = Greeted(greet)
+
 
 // initialise session middleware - flash-express depends on it
 app.use(session({
@@ -40,79 +43,18 @@ app.use(flash());
 
 
 
-app.get('/', async function (req, res) {
-    res.render('index');
-});
+app.get('/', routeInstant.home)
 
 
-// app.get("/", function (req, res) {
+app.post('/greet', routeInstant.langName)
+
+app.get('/greeted', routeInstant.greetedName)
 
 
-//     res.render("index", {
-//         counter: greet.theCounter(),
-//     })
-// });
 
-app.post('/greet', async function (req, res) {
-    var name = _.capitalize(req.body.nameEntered);
-    var lang = req.body.language;
+app.get('/counter/:username', routeInstant.counterFor)
 
-    if (lang === undefined && name === "") {
-        req.flash('info', 'Please enter language and name');
-        res.render('index')
-        return;
-    }
-
-   else if (!name) {
-        req.flash('info', 'Please enter your name');
-        res.render('index')
-        return;
-    }
-
-   else if (!lang) {
-        req.flash('info', 'Please enter language');
-        res.render('index')
-        return;
-    }
-    // await greetings.checkingNames(name)
-    //console.log(await greetings.getCounter())
-    res.render('index', {
-        message: await greet.theLanguage(lang, name),
-        count: await greet.getCounter(),
-    })
-});
-
-
-app.get('/greeted', async function (req, res) {
-
-    var name = await greet.checkingNames();
-
-    res.render('greeted', {
-        names: name
-    })
-});
-
-
-app.get('/counter/:username', async function (req, res) {
-    const username = req.params.username
-    const names = await greet.updatingCount(username);
-  
-
-     for (const action of names)
-  
-   var personsCounter = action.counter 
-    res.render('counter', { countName: `Hello, ${username} has been greeted ${personsCounter} times` });
-     
-});
-
-app.get('/reset', async function (req, res) {
-
- await greet.reset();
-
-    res.render('index', {
-        counter: await greet.getCounter()
-    })
-});
+app.get('/reset', routeInstant.theReset)
 
 
 
