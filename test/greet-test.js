@@ -25,42 +25,42 @@ describe('Greetings web-app', function () {
     })
 
     it("should be able to insert names to the db and get their counter", async function () {
-        const greet = Greetings(pool);
+        const greeting = Greetings(pool);
 
-        await greet.insertName("Bomkazi");
+        await greeting.insertName("Bomkazi");
 
-        const counter = await greet.getCounter("Bomkazi");
+        const counter = await greeting.getCounter("Bomkazi");
       
 
         assert.equal(4, counter);
     })
 
     it('should able to greet in English', async function () {
-        let greet = Greetings(pool);
+        let greeting = Greetings(pool);
 
-        assert.equal("Hello, Bomkazi", await  greet.theLanguage( "English", "Bomkazi"));
+        assert.equal("Hello, Bomkazi", await  greeting.theLanguage( "English", "Bomkazi"));
 
     });
 
         it('should able to greet in IsiXhosa', async function () {
-            let greet = Greetings(pool);
+            let greeting = Greetings(pool);
 
-            assert.equal("Molo, Sino", await  greet.theLanguage( "IsiXhosa", "Sino"));
+            assert.equal("Molo, Sino", await  greeting.theLanguage( "IsiXhosa", "Sino"));
         
         });
 
         it('should able to greet in IsiZulu', async function () {
-            let greet = Greetings(pool);
+            let greeting = Greetings(pool);
 
-            assert.equal("Sawubona, Njunju", await  greet.theLanguage( "IsiZulu", "Njunju")); 
+            assert.equal("Sawubona, Njunju", await  greeting.theLanguage( "IsiZulu", "Njunju")); 
 
         });
 
 
-        it('should able to reset the counter', async function () {
-            let greetings = Greetings(pool);
+        // it('should able to reset the counter', async function () {
+        //     let greetings = Greetings(pool);
             
-        });
+        // });
 
 
 
