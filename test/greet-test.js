@@ -11,14 +11,29 @@ const pool = new Pool({
 
 describe('Greetings web-app', function () {
 
-    it('should able to insert a name', async function () {
-
+   it("should be able to insert names to db and get user counter", async function () {
         const greet = Greetings(pool);
-        // var theNames = greet.theLanguage("IsiXhosa", "Bomkazi")
 
-        // assert.equal('Molo, Bomkazi', await greet.insertName());
+        await greet.insertName("Sibo");
+        await greet.insertName("Sibo");
 
-    });
+        const counter = await greet.updatingCount("Sibo")
+
+
+        assert.equal[ { counter: 2 } ]
+
+    })
+
+    it("should be able to insert names to the db and get their counter", async function () {
+        const greet = Greetings(pool);
+
+        await greet.insertName("Bomkazi");
+
+        const counter = await greet.getCounter("Bomkazi");
+      
+
+        assert.equal(4, counter);
+    })
 
     it('should able to greet in English', async function () {
         let greet = Greetings(pool);
@@ -41,17 +56,6 @@ describe('Greetings web-app', function () {
 
         });
 
-        // it('should able to count how many people that were greeted', async function () {
-
-        //     let greet = Greetings(pool);
-
-        //     greet.getCounter("Bomkazi", "English");
-        //     greet.getCounter("Sino", "English");
-            
-            
-        //             assert.equal(2, greet.getCounter());
-
-        // });
 
         it('should able to reset the counter', async function () {
             let greetings = Greetings(pool);
@@ -92,112 +96,4 @@ describe('Greetings web-app', function () {
 
 
 
-
-// const assert = require('assert');
-// let Greet = require("../greetings");
-
-// describe("Greetings exercise", function () {
-//     it("should be able to set names", function () {
-//         let greetings = Greet();
-//         var theNames = greetings.theLanguage("IsiXhosa", "Bomkazi")
-
-
-//         assert.equal(theNames, 'Molo, Bomkazi');
-
-//     })
-
-//     it("should be able to greet a person in English", function () {
-//         let greetings = Greet();
-//         var message = greetings.theLanguage('English', 'Bomkazi')
-
-//         assert.equal(message, "Hello, Bomkazi");
-//     })
-
-//     it("should be able to greet a person in IsiXHosa", function () {
-//         let greetings = Greet();
-//         var message = greetings.theLanguage('IsiXhosa', 'Bomkazi')
-
-//         assert.equal(message, "Molo, Bomkazi");
-//     })
-
-//     it("should be able to greet a person in IsiZulu", function () {
-//         let greetings = Greet();
-//         var message = greetings.theLanguage('IsiZulu', 'Bomkazi')
-
-//         assert.equal(message, "Sawubona, Bomkazi");
-//     })
-
-//     it("should count how many names that have been entered", function () {
-//         let greetings = Greet();
-
-//         greetings.setTheName("English", "Bomkazi");
-//         greetings.setTheName("Isixhosa", "Bomkazi");
-
-
-//         assert.equal(2, greetings.counter());
-//     })
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // const assert = require('assert');
-// // let Greet = require("../greetings");
-
-// // describe("Greetings exercise", function () {
-// //     it("should be able to set names", function () {
-// //         let greetings = Greet();
-// //         var theNames = greetings.theLanguage("IsiXhosa", "Bomkazi")
-
-
-// //         assert.equal(theNames, 'Molo, Bomkazi');
-
-// //     })
-
-// //     it("should be able to greet a person in English", function () {
-// //         let greetings = Greet();
-// //         var message = greetings.theLanguage('English', 'Bomkazi')
-
-// //         assert.equal(message, "Hello, Bomkazi");
-// //     })
-
-// //     it("should be able to greet a person in IsiXHosa", function () {
-// //         let greetings = Greet();
-// //         var message = greetings.theLanguage('IsiXhosa', 'Bomkazi')
-
-// //         assert.equal(message, "Molo, Bomkazi");
-// //     })
-
-// //     it("should be able to greet a person in IsiZulu", function () {
-// //         let greetings = Greet();
-// //         var message = greetings.theLanguage('IsiZulu', 'Bomkazi')
-
-// //         assert.equal(message, "Sawubona, Bomkazi");
-// //     })
-
-// //     it("should count how many names that have been entered", function () {
-// //         let greetings = Greet();
-
-// //         greetings.setTheName("English", "Bomkazi");
-// //         greetings.setTheName("Isixhosa", "Bomkazi");
-
-
-// //         assert.equal(2, greetings.counter());
-// //     })
-// // });
 
