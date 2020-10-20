@@ -12,12 +12,12 @@ const pool = new Pool({
 describe('Greetings web-app', function () {
 
    it("should be able to insert names to db and get user counter", async function () {
-        const greet = Greetings(pool);
+        const greeting = Greetings(pool);
 
-        await greet.insertName("Sibo");
-        await greet.insertName("Sibo");
+        await greeting.insertName("Sibo");
+        await greeting.insertName("Sibo");
 
-        const counter = await greet.updatingCount("Sibo")
+        const counter = await greeting.updatingCount("Sibo")
 
 
         assert.equal[ { counter: 2 } ]
