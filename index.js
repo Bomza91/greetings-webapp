@@ -58,23 +58,6 @@ app.get('/reset', routeInstant.theReset)
 
 
 
-
-// app.post("/counter/: username",  function (req, res) {
-
-//     console.log(req.body);
-
-//     const sql = "insert into greet ( name, counter ) values ($1, $2,);"
-
-//     const personsData = req.body;
-
-//     await pool.query(sql, [
-//         personsData.name,
-//         personsData.counter,
-//     ])
-
-//     res.redirect('/counter')
-// });
-
 const PORT = process.env.PORT || 3011;
 
 app.listen(PORT, function () {

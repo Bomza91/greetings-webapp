@@ -7,12 +7,11 @@
         <form action="/greet" method="POST">
             <strong>Name: </strong>
             <input type="text" name="nameEntered" class="nameEntered" placeholder="enter name">
-           
     </div>
 
     <div class="counter">
         {{count}}
-        </div>
+    </div>
 
     <br />
 
@@ -26,18 +25,16 @@
 
     <div class="btn">
         <button type="submit" class="greetUpdate">greet me</button>
-        <br />
-
+       
     </div>
-{{!-- 
-    <div class="message"></div>
 
-    <div class="error"></div> --}}
-
-
+ <br />
     <div classe="return">
         {{message}}
     </div>
+
+     <br />
+
     <div class="info">
         {{#if messages.info}}
         {{messages.info}}
