@@ -32,7 +32,7 @@ describe('Greetings web-app', function () {
         const counter = await greeting.getCounter("Bomkazi");
       
 
-        assert.equal(4, counter);
+        assert.equal(2, counter);
     })
 
     it('should able to greet in English', async function () {
