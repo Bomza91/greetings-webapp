@@ -15,7 +15,12 @@ color: rgb(255, 0, 0);
 
 }
 
-.textbox, .counter {
+.counter {
+	font-size: larger;
+	padding: 1em;
+}
+
+.textbox {
 display: inline;
 }
 

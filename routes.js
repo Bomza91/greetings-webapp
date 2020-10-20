@@ -29,14 +29,14 @@ module.exports = function route(greeted){
         // await greetings.checkingNames(name)
         //console.log(await greetings.getCounter())
         res.render('index', {
-            message: await greet.theLanguage(lang, name),
-            count: await greet.getCounter(),
+            message: await greeted.theLanguage(lang, name),
+            count: await greeted.getCounter(),
         })
     };
 
     async function greetedName (req, res) {
 
-        var name = await greet.checkingNames();
+        var name = await greeted.checkingNames();
     
         res.render('greeted', {
             names: name
@@ -45,7 +45,7 @@ module.exports = function route(greeted){
     
     async function counterFor (req, res) {
         const username = req.params.username
-        const names = await greet.updatingCount(username);
+        const names = await greeted.updatingCount(username);
       
     
          for (const action of names)
@@ -60,7 +60,7 @@ module.exports = function route(greeted){
         await greet.reset();
        
            res.render('index', {
-               counter: await greet.getCounter()
+               counter: await greeted.getCounter()
            })
        };
 
