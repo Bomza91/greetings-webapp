@@ -57,7 +57,7 @@ module.exports = function route(greeted){
 
     async function theReset(req, res) {
 
-        await greet.reset();
+        await greeted.reset();
        
            res.render('index', {
                counter: await greeted.getCounter()
