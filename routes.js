@@ -2,7 +2,10 @@ module.exports = function route(greeted){
     var _ = require('lodash');
 
     async function home (req, res) {
-        res.render('index');
+        res.render('index', {
+        count: await greeted.getCounter(),
+
+        })
     };
 
     async function langName(req, res) {
