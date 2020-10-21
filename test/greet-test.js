@@ -17,10 +17,26 @@ describe('Greetings web-app', function () {
         await greeting.insertName("Sibo");
         await greeting.insertName("Sibo");
 
+
         const counter = await greeting.updatingCount("Sibo")
 
 
         assert.equal[ { counter: 2 } ]
+
+    })
+
+    it("should be able to count all the names that have been greeted", async function () {
+        const greeting = Greetings(pool);
+
+        await greeting.insertName("Sibo");
+        await greeting.insertName("Sino");
+        await greeting.insertName("Namhla");
+
+
+        const counteAll = await greeting.getCounter("")
+
+
+        assert.equal[ { counteAll: 3 } ]
 
     })
 

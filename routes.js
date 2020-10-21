@@ -10,7 +10,7 @@ module.exports = function route(greeted){
         var lang = req.body.language;
     
         if (lang === undefined && name === "") {
-            req.flash('info', 'Please enter language and name');
+            req.flash('info', 'Please enter name and select the language');
             res.render('index')
             return;
         }

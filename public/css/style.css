@@ -7,12 +7,19 @@ body {
 
 .row{
 	background-origin: padding-box;
+	text-size-adjust: 10;
+	text-align: justify;
 }
 
 
 .info {
 color: rgb(255, 0, 0);
+font-size: 20px;
 
+}
+
+.return{
+	font-size: 20px;
 }
 
 .counter {
@@ -20,9 +27,6 @@ color: rgb(255, 0, 0);
 	padding: 1em;
 }
 
-.textbox {
-display: inline;
-}
 
 .textBox{
 border: 0.01em solid;
